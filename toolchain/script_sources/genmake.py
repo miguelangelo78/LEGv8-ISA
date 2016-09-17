@@ -9,10 +9,14 @@ fileformat = "sv"
 verilog_filelist = []
 filename_list = []
 filenames_no_path = []
+blacklist = ["defines.sv"]
 
 # Fetch all filenames (with their path) recursively:
 for root, dirnames, filenames in os.walk(src_path):
 	for filename in fnmatch.filter(filenames, '*.'+fileformat):
+		if(filename in blacklist):
+			continue
+		print filename
 		verilog_filelist.append(os.path.join(root, filename).replace("\\", "/"))
 
 # Read entire Makefile:

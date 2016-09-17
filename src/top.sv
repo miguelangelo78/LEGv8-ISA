@@ -14,7 +14,10 @@ module top;
 	
 	initial begin
 		$dumpfile("top.vcd");
-		$dumpvars(0, top);
+		$dumpvars(0, legv8);
+		restart_cpu = 1;
+		#1;
+		restart_cpu = 0;
 		#50; $finish;
 	end
 endmodule

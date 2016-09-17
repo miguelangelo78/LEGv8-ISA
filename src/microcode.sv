@@ -1,13 +1,13 @@
 `include "defines.sv"
 
-module Microcode(clk, ctrl, opcode, eos, sos);
+module Microcode(clk, opcode, sos);
 
 /************************* PORT DEFINITIONS *************************/
 input clk;
-output reg [`CTRL_WIDTH:0] ctrl = 0;
-input [5:0] opcode;
+reg [`CTRL_WIDTH:0] ctrl = 0;
+input [`R_FMT_OPCODE_SZ-1:0] opcode;
 /* End of segment: signals the outer system that its execution is finished, and will wait until a sos signal is received */
-output eos;
+wire eos;
 assign eos = ctrl[`CTRL_WIDTH]; /* It's the very last bit of the control bus */
 /* Start of segment: triggers the execution of the next segment */
 input sos;
@@ -158,7 +158,8 @@ end endtask
 /************************** MICROCODE BEGIN SECTION **************************/
 initial begin
 	/* Program Microcode for each instruction here: */
-	microinstr(32'b0000000000000001, {4'b0010, 28'd1}, 1, 0, 0); /* LW and jmp to segment 2 */
+	microinstr(32'b0000000000000100, 0, 1, 0, 0); /* ADD */
+	microinstr(32'b0000000000001000, 0, 0, 0, 0); /* ADD */
 	microinstr(32'b0000000000000001, 0, 0, 1, 0); /* Then go idle */
 	
 	microinstr(32'b0000000000000001, {4'b0010, 28'd2}, 1, 0, 1); /* LW and jmp to segment 3 */
