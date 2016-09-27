@@ -119,19 +119,6 @@ module Instruction_Memory(
 	initial begin
 		write_iw(0, 'hFEBA, 9);
 		write_iw(1, 'hFEBA, 9);
-		//write_r(2,1,1,1,1);
-		//write_r(3,1,1,1,1);
-		//mem[`ALIGN_INSTR(0)] = {6'h0, 5'h0,5'h0,16'h0}; /* LW */
-		//mem[`ALIGN_INSTR(1)] = {6'h1, 5'h0,5'h0,16'h0}; /* SW */
-		//mem[2] = {6'h0, 5'h0,5'h0,16'h0}; /* LW */
-		//mem[3] = {6'h1, 5'h0,5'h0,16'h0}; /* SW */
-		//mem[4] = {6'h0, 5'h0,5'h0,16'h0}; /* LW */
-		/* ADD */
-		/* SUB */
-		/* BEQ */
-		/* JMP */
-		
-		/* End of memory: */
-		//mem[5] = {~6'h0, 26'h0}; /* Invalid Op */
+
 	end
 endmodule

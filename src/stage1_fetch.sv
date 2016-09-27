@@ -15,7 +15,7 @@ module Program_Counter(
 	input                          reset,
 	output [`LEGV8_INTEGER_SZ-1:0] addr_out
 );
-	reg [`LEGV8_INTEGER_SZ-1:0]latched_addr = 0;
+	reg [`LEGV8_INTEGER_SZ-1:0] latched_addr = 0;
 	always@(wr or reset) begin
 		if(wr)
 			latched_addr = addr_in;
@@ -43,4 +43,13 @@ module Stage1_Fetch(
 	
 	Program_Counter pc(((branch_flag & zero_flag) | uncond_branch_flag) ? new_pc : pc_out + 4, next, reset, pc_out);
 	Instruction_Memory imem(pc_out, instruction);
+	
+	/* 1st Stage's Pipeline buffers: */
+	reg[`LEGV8_INSTRUCTION_SZ+`LEGV8_INTEGER_SZ-1:0]pipe_in;
+	reg[`LEGV8_INSTRUCTION_SZ+`LEGV8_INTEGER_SZ-1:0]pipe_out;
+	
+	always@(next) begin
+		pipe_out = pipe_in;
+		pipe_in  = {instruction, pc_out};
+	end
 endmodule

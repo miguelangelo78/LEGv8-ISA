@@ -39,59 +39,57 @@
 `define IW_FMT_RD_SZ           5
 	
 /* Instruction Opcodes: */
-`define ADD 11'458
-`define ADDI 11'488
-`define ADDIS 11'588
-`define ADDS 11'558
-`define AND 11'450
-`define ANDI 11'490
-`define ANDIS 11'790
-`define ANDS 11'750
-`define B 11'0A0
-`define BCOND 11'2A0
-`define BL 11'4A0
-`define BR 11'6B0
-`define CBNZ 11'5A8
-`define CBZ 11'5A0
-`define EOR 11'650
-`define EORI 11'690
-`define LDUR 11'7C2
-`define LDURB 11'1C2
-`define LDURH 11'3C2
-`define LDURSW 11'5C4
-`define LDXR 11'642
-`define LSL 11'69B
-`define LSR 11'69A
-`define MOVK 11'794
-`define MOVZ 11'694
-`define ORR 11'550
-`define ORRI 11'590
-`define STUR 11'7C0
-`define STURB 11'1C0
-`define STURH 11'3C0
-`define STURW 11'5C0
-`define STXR 11'640
-`define SUB 11'658
-`define SUBI 11'688
-`define SUBIS 11'788
-`define SUBS 11'758
-`define MUL 11'4D8
-`define SDIV 11'4D6
-`define SMULH 11'4DA
-`define STURS 11'7E2
-`define STURD 11'7E0
-`define UDIV 11'4D6
-`define UMULH 11'4DE
+`define ADD    11'458 /* Add */
+`define ADDI   11'488 /* Add Immediate */
+`define ADDIS  11'588 /* Add Immediate and Set flags */
+`define ADDS   11'558 /* Add and Set Flags */
+`define AND    11'450 /* Logical And */
+`define ANDI   11'490 /* Logical And Immediate */
+`define ANDIS  11'790 /* Logical And Immediate and Set flags */
+`define ANDS   11'750 /* Logical And and Set Flags */
+`define B      11'0A0 /* Branch unconditionally */
+`define BCOND  11'2A0 /* Branch conditionally */
+`define BL     11'4A0 /* Branch unconditionally and link (callee address) */
+`define BR     11'6B0 /* Branch unconditionally using register's value as the address */
+`define CBNZ   11'5A8 /* Conditional Branch if Not Zero */
+`define CBZ    11'5A0 /* Conditional Branch if Zero */
+`define EOR    11'650 /* Logical Exclusive Or */
+`define EORI   11'690 /* Logical Exclusive Or Immediate */
+`define LDUR   11'7C2 /* Load double word (64 bits) into Register with Unscaled Offset (offset is of atomic size/not aligned, e.g. 1 byte) */
+`define LDURB  11'1C2 /* Load Byte into Register with Unscalled Offset */
+`define LDURH  11'3C2 /* Load Half Word (16 bits) into Register with Unscaled Offset */
+`define LDURSW 11'5C4 /* Load Signed Word (32 bits signed) into Register with Unscaled Offset */
+`define LDXR   11'642 /* Load Exclusive Register */
+`define LSL    11'69B /* Logical Shift Left */
+`define LSR    11'69A /* Logical Shift Right */
+`define MOVK   11'794 /* Move Wide with Keep (without removing the 1's from the register) */
+`define MOVZ   11'694 /* Move Wide with Zero (removes all 1's) */
+`define ORR    11'550 /* Logical Inclusive Or */
+`define ORRI   11'590 /* Logical Inclusive Or Immediate */
+`define STUR   11'7C0 /* Store Register's Double Word (64 bits) into Memory with Unscaled Offset (on the mem's address) */
+`define STURB  11'1C0 /* Store Register's Byte into Memory with Unscaled Offset */
+`define STURH  11'3C0 /* Store Register's Half Word (16 bits) into Memory with Unscaled Offset */
+`define STURW  11'5C0 /* Store Register's Word (32 bits) into Memory with Unscaled Offset */
+`define STXR   11'640 /* Store Exclusive Register */
+`define SUB    11'658 /* Subtract */
+`define SUBI   11'688 /* Subtract Immediate  */
+`define SUBIS  11'788 /* Subtract Immediate and Set Flags */
+`define SUBS   11'758 /* Subtract and Set Flags */
+`define MUL    11'4D8 /* Multiply */
+`define SDIV   11'4D6 /* Signed Divide */
+`define SMULH  11'4DA /* Signed Multiply High */
+`define UDIV   11'4D6 /* Unsigned Divide */
+`define UMULH  11'4DE /* Unsigned Multiply High */
 /*******************************************/
 
 /***** Microcode Unit Defines: ******/
-`define CTRL_WIDTH 32
-`define FUNC_WIDTH 32
-`define CTRL_DEPTH 256
-`define SEGMENT_MAXCOUNT 256
-`define CTRL_DEPTH_ENC ($clog2(`CTRL_DEPTH) - 1)
+`define CTRL_WIDTH           32
+`define FUNC_WIDTH           32
+`define CTRL_DEPTH           256
+`define SEGMENT_MAXCOUNT     256
+`define CTRL_DEPTH_ENC       ($clog2(`CTRL_DEPTH) - 1)
 `define SEGMENT_MAXCOUNT_ENC ($clog2(`SEGMENT_MAXCOUNT) - 1)
-`define CALLSTACK_SIZE 256
+`define CALLSTACK_SIZE       256
 /************************************/
 
 `define ALIGN_INSTR(val) ((val) << 2)	
